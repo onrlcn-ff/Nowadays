@@ -1,12 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Nowadays.Models;
 
 namespace Nowadays.Repositories
 {
-    public class IUnitOfWork
+   public interface IUnitOfWork : IDisposable
     {
-        
-    }
+        IRepository<Company> CompanyRepository { get; }
+        IRepository<Project> ProjectRepository { get; }
+        IRepository<Employee> EmployeeRepository { get; }
+        IRepository<Issue> IssueRepository { get; }
+        IRepository<Report> ReportRepository { get; }
+        void Save();
+    } 
+    
 }
