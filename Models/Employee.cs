@@ -15,6 +15,7 @@ namespace Nowadays.Models
         public int BirtYear{ get; set; }
         public long TcNo { get; set; }
         public int ProjectId { get; set; }
+        public int CompanyId { get; set; }
         
     }
 }

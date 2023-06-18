@@ -13,6 +13,5 @@ namespace Nowadays.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public int ProjectId { get; set; }
-        public List<Employee> AssignedEmployees { get; set; } = new List<Employee>();
     }
 }
