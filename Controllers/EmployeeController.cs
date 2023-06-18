@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Nowadays.Models;
 using Nowadays.Repositories;
+using Nowadays.Services;
 
 namespace NowadaysProject.Controllers
 {
@@ -13,20 +14,20 @@ namespace NowadaysProject.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly EmployeeServices _employeeServices;
 
         public EmployeeController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            _employeeServices = new EmployeeServices();
         }
 
-        // GET: api/Employees
         [HttpGet]
         public IEnumerable<Employee> GetEmployees()
         {
             return _unitOfWork.EmployeeRepository.GetAll();
         }
 
-        // GET: api/Employees/5
         [HttpGet("{id}")]
         public ActionResult<Employee> GetEmployee(int id)
         {
@@ -40,10 +41,10 @@ namespace NowadaysProject.Controllers
             return employee;
         }
 
-        // PUT: api/Employees/5
         [HttpPut("{id}")]
         public IActionResult UpdateEmployee(int id, Employee employee)
         {
+
             if (id != employee.Id)
             {
                 return BadRequest();
@@ -55,17 +56,18 @@ namespace NowadaysProject.Controllers
             return NoContent();
         }
 
-        // POST: api/Employees
         [HttpPost]
         public ActionResult<Employee> CreateEmployee(Employee employee)
         {
+            if(!_employeeServices.TCKimlikNoDogrula(employee.TcNo,employee.Name,employee.Surname, employee.BirtYear))
+                return BadRequest("Tc Kimlik Numaranız Doğrulanamadı");
+
             _unitOfWork.EmployeeRepository.Insert(employee);
             _unitOfWork.Save();
 
             return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }, employee);
         }
 
-        // DELETE: api/Employees/5
         [HttpDelete("{id}")]
         public IActionResult DeleteEmployee(int id)
         {

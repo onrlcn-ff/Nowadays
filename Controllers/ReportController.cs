@@ -19,14 +19,12 @@ namespace NowadaysProject.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        // GET: api/Reports
         [HttpGet]
         public IEnumerable<Report> GetReports()
         {
             return _unitOfWork.ReportRepository.GetAll();
         }
 
-        // GET: api/Reports/5
         [HttpGet("{id}")]
         public ActionResult<Report> GetReport(int id)
         {
@@ -40,7 +38,6 @@ namespace NowadaysProject.Controllers
             return report;
         }
 
-        // PUT: api/Reports/5
         [HttpPut("{id}")]
         public IActionResult UpdateReport(int id, Report report)
         {
@@ -55,7 +52,6 @@ namespace NowadaysProject.Controllers
             return NoContent();
         }
 
-        // POST: api/Reports
         [HttpPost]
         public ActionResult<Report> CreateReport(Report report)
         {
@@ -65,7 +61,6 @@ namespace NowadaysProject.Controllers
             return CreatedAtAction(nameof(GetReport), new { id = report.Id }, report);
         }
 
-        // DELETE: api/Reports/5
         [HttpDelete("{id}")]
         public IActionResult DeleteReport(int id)
         {

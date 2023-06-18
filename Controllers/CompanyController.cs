@@ -19,14 +19,12 @@ namespace NowadaysProject.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        // GET: api/Companys
         [HttpGet]
         public IEnumerable<Company> GetCompanies()
         {
             return _unitOfWork.CompanyRepository.GetAll();
         }
 
-        // GET: api/Companys/5
         [HttpGet("{id}")]
         public ActionResult<Company> GetCompany(int id)
         {
@@ -40,7 +38,6 @@ namespace NowadaysProject.Controllers
             return company;
         }
 
-        // PUT: api/Companys/5
         [HttpPut("{id}")]
         public IActionResult UpdateCompany(int id, Company company)
         {
@@ -55,7 +52,6 @@ namespace NowadaysProject.Controllers
             return NoContent();
         }
 
-        // POST: api/Companys
         [HttpPost]
         public ActionResult<Company> CreateCompany(Company company)
         {
@@ -65,7 +61,6 @@ namespace NowadaysProject.Controllers
             return CreatedAtAction(nameof(GetCompany), new { id = company.Id }, company);
         }
 
-        // DELETE: api/Companys/5
         [HttpDelete("{id}")]
         public IActionResult DeleteCompany(int id)
         {

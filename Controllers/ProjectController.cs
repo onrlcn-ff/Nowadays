@@ -15,14 +15,12 @@ namespace NowadaysProject.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        // GET: api/Projects
         [HttpGet]
         public IEnumerable<Project> GetProjects()
         {
             return _unitOfWork.ProjectRepository.GetAll();
         }
 
-        // GET: api/Projects/5
         [HttpGet("{id}")]
         public ActionResult<Project> GetProject(int id)
         {
@@ -36,7 +34,6 @@ namespace NowadaysProject.Controllers
             return project;
         }
 
-        // PUT: api/Projects/5
         [HttpPut("{id}")]
         public IActionResult UpdateProject(int id, Project project)
         {
@@ -51,7 +48,6 @@ namespace NowadaysProject.Controllers
             return NoContent();
         }
 
-        // POST: api/Projects
         [HttpPost]
         public ActionResult<Project> CreateProject(Project project)
         {
@@ -61,7 +57,6 @@ namespace NowadaysProject.Controllers
             return CreatedAtAction(nameof(GetProject), new { id = project.Id }, project);
         }
 
-        // DELETE: api/Projects/5
         [HttpDelete("{id}")]
         public IActionResult DeleteProject(int id)
         {

@@ -19,14 +19,12 @@ namespace NowadaysProject.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        // GET: api/Issues
         [HttpGet]
         public IEnumerable<Issue> GetIssues()
         {
             return _unitOfWork.IssueRepository.GetAll();
         }
 
-        // GET: api/Issues/5
         [HttpGet("{id}")]
         public ActionResult<Issue> GetIssue(int id)
         {
@@ -40,7 +38,6 @@ namespace NowadaysProject.Controllers
             return issue;
         }
 
-        // PUT: api/Issues/5
         [HttpPut("{id}")]
         public IActionResult UpdateIssue(int id, Issue issue)
         {
@@ -55,7 +52,6 @@ namespace NowadaysProject.Controllers
             return NoContent();
         }
 
-        // POST: api/Issue
         [HttpPost]
         public ActionResult<Issue> CreateIssue(Issue issue)
         {
@@ -65,7 +61,6 @@ namespace NowadaysProject.Controllers
             return CreatedAtAction(nameof(GetIssue), new { id = issue.Id }, issue);
         }
 
-        // DELETE: api/Issues/5
         [HttpDelete("{id}")]
         public IActionResult DeleteIssue(int id)
         {

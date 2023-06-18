@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Nowadays.Repositories;
 using static Nowadays.Data.AplicationDbContext;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddDbContext<ApplicationDbContext> (options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
