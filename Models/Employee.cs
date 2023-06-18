@@ -14,7 +14,6 @@ namespace Nowadays.Models
         public string Surname { get; set; }
         public int BirtYear{ get; set; }
         public long TcNo { get; set; }
-        public Project Project { get; set; }
         public int ProjectId { get; set; }
         
     }
